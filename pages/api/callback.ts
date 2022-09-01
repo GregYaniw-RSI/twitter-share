@@ -11,11 +11,11 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { oauth_token, oauth_verifier } = req.query;
-  
+
   const cookies = cookie.parse(req.headers.cookie || '');
   const oauth_token_secret = cookies.oauth_token_secret;
 
-  console.log('CALLBACK');
+  console.log('CALLBACK TEST');
   console.log(oauth_token);
 
   if (!oauth_token || !oauth_verifier) {
@@ -45,7 +45,7 @@ export default async function handler(
     await client.v1.tweet('Hello there!', {
       media_ids: mediaId,
     });
-  } catch(error) {
+  } catch (error) {
     console.log(error);
 
     res.status(401).json({
