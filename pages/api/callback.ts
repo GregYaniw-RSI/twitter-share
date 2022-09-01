@@ -15,9 +15,6 @@ export default async function handler(
   const cookies = cookie.parse(req.headers.cookie || '');
   const oauth_token_secret = cookies.oauth_token_secret;
 
-  console.log('CALLBACK TEST');
-  console.log(oauth_token);
-
   if (!oauth_token || !oauth_verifier) {
     return res.status(400).send('You denied the app or your session expired!');
   }
@@ -29,14 +26,10 @@ export default async function handler(
     accessSecret: oauth_token_secret,
   };
 
-  console.log(clientOptions);
-
   const twitterClient = new TwitterApi(clientOptions as any);
 
   try {
     const { client, userId } = await twitterClient.login(oauth_verifier as string);
-
-    console.log(`Trying to tweet on behalf of ${userId}`);
 
     const mediaId = await client.v1.uploadMedia(Buffer.from(mockImage), {
       type: 'png',
