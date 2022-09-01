@@ -52,6 +52,6 @@ export default async function handler(
     oauthToken: req.query.oauth_token,
     oauthVerifier: req.query.oauth_verifier,
     accessToken: oauth_token,
-    accessSecret: oauth_token_secret,
+    accessSecret: cookieContent.oauth_token_secret,
   });
 }
