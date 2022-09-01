@@ -11,7 +11,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { oauth_token, oauth_verifier } = req.query;
-
+  console.log('test', req, res);
   const cookies = cookie.parse(req.headers.cookie || '');
   const cookieContent = JSON.parse(cookies.tweet_details);
 
