@@ -13,7 +13,7 @@ export default async function handler(
   const { oauth_token, oauth_verifier } = req.query;
 
   const cookies = cookie.parse(req.headers.cookie || '');
-  const oauth_token_secret = cookies.oauth_token_secret;
+  const cookieContent = JSON.parse(cookies.tweet_details);
 
   if (!oauth_token || !oauth_verifier) {
     return res.status(400).send('You denied the app or your session expired!');
@@ -23,7 +23,7 @@ export default async function handler(
     appKey: process.env.TWITTER_CONSUMER_KEY,
     appSecret: process.env.TWITTER_CONSUMER_SECRET,
     accessToken: oauth_token,
-    accessSecret: oauth_token_secret,
+    accessSecret: cookieContent.oauth_token_secret,
   };
 
   const twitterClient = new TwitterApi(clientOptions as any);
@@ -35,7 +35,7 @@ export default async function handler(
       type: 'png',
       mimeType: 'image/png',
     });
-    await client.v1.tweet('Hello there!', {
+    await client.v1.tweet(cookieContent.text, {
       media_ids: mediaId,
     });
   } catch (error) {

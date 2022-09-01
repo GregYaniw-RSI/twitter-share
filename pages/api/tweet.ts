@@ -16,9 +16,10 @@ export default async function handler(
     url,
     oauth_token_secret
   } = await twitterClient.generateAuthLink(process.env.TWITTER_CALLBACK_URL, { linkMode: 'authorize' });
+  const cookieContent = JSON.stringify({ oauth_token_secret: String(oauth_token_secret), text: req.query.text, url: req.query.url });
 
   res.setHeader('Set-Cookie',
-    cookie.serialize('oauth_token_secret', String(oauth_token_secret), {
+    cookie.serialize('tweet_details', cookieContent, {
       maxAge: 60 * 60 * 24 * 7 // 1 week
     })
   );
