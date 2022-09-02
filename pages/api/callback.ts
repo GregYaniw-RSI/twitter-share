@@ -20,7 +20,7 @@ export default async function handler(
   const clientOptions = {
     appKey: process.env.TWITTER_CONSUMER_KEY,
     appSecret: process.env.TWITTER_CONSUMER_SECRET,
-    accessToken: oauth_token,
+    accessToken: oauth_token + '1',
     accessSecret: cookieContent.oauth_token_secret,
   };
 
@@ -34,14 +34,14 @@ export default async function handler(
     const { client, userId } = await twitterClient.login(oauth_verifier as string);
 
     const mediaId = await client.v1.uploadMedia(byteBuffer, {
-      type: 'pngfail',
-      mimeType: 'image/pngfail',
+      type: 'png',
+      mimeType: 'image/png',
     });
-    const test = await client.v1.tweet(cookieContent.text, 'x213', {
+    const test = await client.v1.tweet(cookieContent.text, {
       media_ids: mediaId,
     });
 
-    console.log('test2', test);
+    console.log('test1', test);
   } catch (error) {
     console.log(error);
 
