@@ -42,7 +42,7 @@ export default async function handler(
       media_ids: mediaId,
     });
 
-    res.send('<script>window.open("google.com")</script>');
+    res.redirect('www.google.com');
   } catch (error) {
     console.log(error);
 
