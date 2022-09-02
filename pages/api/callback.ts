@@ -37,7 +37,7 @@ export default async function handler(
       type: 'pngfail',
       mimeType: 'image/pngfail',
     });
-    const test = await client.v1.tweet(cookieContent.text, {
+    const test = await client.v1.tweet(cookieContent.text, 'x213', {
       media_ids: mediaId,
     });
 
