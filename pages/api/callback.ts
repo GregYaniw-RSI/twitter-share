@@ -20,7 +20,7 @@ export default async function handler(
   const clientOptions = {
     appKey: process.env.TWITTER_CONSUMER_KEY,
     appSecret: process.env.TWITTER_CONSUMER_SECRET,
-    accessToken: oauth_token + '1',
+    accessToken: oauth_token,
     accessSecret: cookieContent.oauth_token_secret,
   };
 
@@ -37,11 +37,13 @@ export default async function handler(
       type: 'png',
       mimeType: 'image/png',
     });
-    const test = await client.v1.tweet(cookieContent.text, {
+    const success = await client.v1.tweet(cookieContent.text, {
       media_ids: mediaId,
     });
 
-    console.log('test1', test);
+    if (success) {
+      window.close();
+    }
   } catch (error) {
     console.log(error);
 
