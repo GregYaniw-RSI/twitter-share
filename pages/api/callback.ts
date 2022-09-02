@@ -40,9 +40,6 @@ export default async function handler(
     await client.v1.tweet(cookieContent.text, {
       media_ids: mediaId,
     });
-
-    window.close();
-
   } catch (error) {
     console.log(error);
 
