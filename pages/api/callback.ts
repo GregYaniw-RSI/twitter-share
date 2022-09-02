@@ -37,13 +37,12 @@ export default async function handler(
       type: 'png',
       mimeType: 'image/png',
     });
-    const success = await client.v1.tweet(cookieContent.text, {
+    await client.v1.tweet(cookieContent.text, {
       media_ids: mediaId,
     });
 
-    if (success) {
-      window.close();
-    }
+    window.close();
+
   } catch (error) {
     console.log(error);
 
