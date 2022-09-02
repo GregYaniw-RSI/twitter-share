@@ -23,6 +23,6 @@ export default async function handler(
       maxAge: 60 * 60 * 24 * 7 // 1 week
     })
   );
-  console.log('testing123', url)
+
   res.redirect(url);
 }

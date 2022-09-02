@@ -11,7 +11,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { oauth_token, oauth_verifier } = req.query;
-  console.log('test', req, res);
+
   const cookies = cookie.parse(req.headers.cookie || '');
   const cookieContent = JSON.parse(cookies.tweet_details);
 
@@ -28,10 +28,14 @@ export default async function handler(
 
   const twitterClient = new TwitterApi(clientOptions as any);
 
+  const resp = await fetch(cookieContent.url);
+  const arrayBuffer = await resp.arrayBuffer();
+  const byteBuffer = Buffer.from(arrayBuffer);
+
   try {
     const { client, userId } = await twitterClient.login(oauth_verifier as string);
 
-    const mediaId = await client.v1.uploadMedia(Buffer.from(mockImage), {
+    const mediaId = await client.v1.uploadMedia(byteBuffer, {
       type: 'png',
       mimeType: 'image/png',
     });
