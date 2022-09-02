@@ -41,7 +41,7 @@ export default async function handler(
       media_ids: mediaId,
     });
 
-    console.log('test', test);
+    console.log('test123', test);
   } catch (error) {
     console.log(error);
 
