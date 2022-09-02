@@ -24,5 +24,5 @@ export default async function handler(
     })
   );
 
-  res.redirect(url);
+  return res.redirect(url);
 }
