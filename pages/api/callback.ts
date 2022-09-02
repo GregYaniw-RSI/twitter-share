@@ -41,6 +41,8 @@ export default async function handler(
     await client.v1.tweet(cookieContent.text, {
       media_ids: mediaId,
     });
+
+    res.send('<script>window.close()</script>');
   } catch (error) {
     console.log(error);
 
@@ -50,8 +52,6 @@ export default async function handler(
 
     return;
   }
-
-  window.close();
 
   res.status(200).json({
     oauthToken: req.query.oauth_token,
