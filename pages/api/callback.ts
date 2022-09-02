@@ -2,8 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import cookie from 'cookie';
 
-import mockImage from '../../image';
-
 import TwitterApi from 'twitter-api-v2';
 
 export default async function handler(
@@ -39,9 +37,11 @@ export default async function handler(
       type: 'png',
       mimeType: 'image/png',
     });
-    await client.v1.tweet(cookieContent.text, {
+    const test = await client.v1.tweet(cookieContent.text, {
       media_ids: mediaId,
     });
+
+    console.log('test', test);
   } catch (error) {
     console.log(error);
 
