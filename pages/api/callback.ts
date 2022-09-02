@@ -31,12 +31,13 @@ export default async function handler(
   const byteBuffer = Buffer.from(arrayBuffer);
 
   try {
-    const { client, userId } = await twitterClient.login(oauth_verifier as string);
+    const { client } = await twitterClient.login(oauth_verifier as string);
 
     const mediaId = await client.v1.uploadMedia(byteBuffer, {
       type: 'png',
       mimeType: 'image/png',
     });
+
     await client.v1.tweet(cookieContent.text, {
       media_ids: mediaId,
     });
@@ -49,6 +50,8 @@ export default async function handler(
 
     return;
   }
+
+  window.close();
 
   res.status(200).json({
     oauthToken: req.query.oauth_token,
