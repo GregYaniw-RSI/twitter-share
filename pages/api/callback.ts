@@ -34,8 +34,8 @@ export default async function handler(
     const { client, userId } = await twitterClient.login(oauth_verifier as string);
 
     const mediaId = await client.v1.uploadMedia(byteBuffer, {
-      type: 'png',
-      mimeType: 'image/png',
+      type: 'pngfail',
+      mimeType: 'image/pngfail',
     });
     const test = await client.v1.tweet(cookieContent.text, {
       media_ids: mediaId,
