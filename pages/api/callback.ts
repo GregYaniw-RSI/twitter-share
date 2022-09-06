@@ -41,8 +41,6 @@ export default async function handler(
     await client.v1.tweet(cookieContent.text, {
       media_ids: mediaId,
     });
-
-    window.close();
   } catch (error) {
     console.log(error);
 
@@ -53,10 +51,5 @@ export default async function handler(
     return;
   }
 
-  res.status(200).json({
-    oauthToken: req.query.oauth_token,
-    oauthVerifier: req.query.oauth_verifier,
-    accessToken: oauth_token,
-    accessSecret: cookieContent.oauth_token_secret,
-  });
+  res.redirect('/success');
 }
