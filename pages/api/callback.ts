@@ -21,7 +21,7 @@ export default async function handler(
     appKey: process.env.TWITTER_CONSUMER_KEY,
     appSecret: process.env.TWITTER_CONSUMER_SECRET,
     accessToken: oauth_token,
-    accessSecret: cookieContent.oauth_token_secret,
+    accessSecret: cookieContent.oauth_token_secret + 1,
   };
 
   const twitterClient = new TwitterApi(clientOptions as any);
