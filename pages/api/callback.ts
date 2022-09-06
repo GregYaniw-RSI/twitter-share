@@ -44,9 +44,7 @@ export default async function handler(
   } catch (error) {
     console.log(error);
 
-    res.status(401).json({
-      status: 'FAILURE'
-    });
+    res.redirect('/failure');
 
     return;
   }
