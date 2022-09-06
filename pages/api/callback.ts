@@ -18,9 +18,9 @@ export default async function handler(
   }
 
   const clientOptions = {
-    appKey: process.env.TWITTER_CONSUMER_KEY,
-    appSecret: process.env.TWITTER_CONSUMER_SECRET,
-    accessToken: oauth_token,
+    appKey: process.env.TWITTER_CONSUMER_KEY + '1',
+    appSecret: process.env.TWITTER_CONSUMER_SECRET + '1',
+    accessToken: oauth_token + '1',
     accessSecret: cookieContent.oauth_token_secret + 1,
   };
 
