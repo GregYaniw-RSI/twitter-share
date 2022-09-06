@@ -7,7 +7,7 @@ const Failure: NextPage = () => {
     <div className={styles.container}>
       <h1>Failure</h1>
       <p>Something went wrong tweeting your betslip receipt to Twitter. Please try again!</p>
-      <button onClick={() => window.close()}></button>
+      <button onClick={() => window.close()}>Close</button>
     </div>
   )
 }
